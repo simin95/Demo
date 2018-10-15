@@ -1,7 +1,12 @@
 <template>
-  <div class="hello">
+  <div class="hello" v-on:click="show('msg',$event)">
+    <input v-on:keyup="show('msg',$event)">
     <demo/>
     <demo2/>
+    <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
+    <!-- <div></div> -->
   </div>
 </template>
 
@@ -11,6 +16,19 @@ export default {
   data() {
     return {};
   },
+  methods: {
+    show(msg,event){
+      console.log(msg);
+      console.log(event);
+      console.log('hello')
+    },
+     warn: function (message, event) {
+       console.log(event);
+    // 现在我们可以访问原生事件对象
+    if (event) event.preventDefault()
+    alert(message)
+  }
+  }
 };
 </script>
 
